@@ -1,0 +1,4 @@
+import { PageHeader } from '@/components/AppShell';
+import { MetricCard } from '@/components/Cards';
+import { Coins, Crown, Server, Trophy } from 'lucide-react';
+export default function Page(){return <><PageHeader title="Visão Geral" description="Resumo da sua conta Onne. O gerenciamento do bot aparece somente depois de selecionar um servidor."/><div className="grid"><MetricCard icon={Server} title="Meus servidores" value="3 servidores" description="Escolha um servidor para liberar o painel de gerenciamento"/><MetricCard icon={Crown} title="Plano atual" value="Free" description="Faça upgrade para liberar recursos premium."/><MetricCard icon={Trophy} title="XP global" value="Lv. 42" description="82% até o próximo nível."/><MetricCard icon={Coins} title="Carteira" value="8.250" description="OnCash disponível para loja e RPG."/></div></>}
