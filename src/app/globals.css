@@ -4466,3 +4466,294 @@ html[data-panel-theme="crimson-pulse"] {
     display: none;
   }
 }
+
+/* Mobile hardening: prevents card overlays, duplicated glass blur artifacts and desktop grids on phones */
+@media (max-width: 768px) {
+  html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    background-image:
+      linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px) !important;
+    background-size: 32px 32px, 32px 32px !important;
+  }
+
+  .app,
+  .main,
+  .content {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .main {
+    padding-left: 0 !important;
+    overflow-x: hidden;
+  }
+
+  .topbar {
+    height: auto !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 12px !important;
+    padding: 14px 16px !important;
+    overflow: visible !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    background: rgba(5, 7, 10, .96) !important;
+  }
+
+  .mobile-menu-button,
+  .topbar-icon-button,
+  .topbar-mini-card {
+    flex: 0 0 auto;
+  }
+
+  .topbar-actions {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 10px !important;
+    min-width: 0 !important;
+  }
+
+  .topbar-subscription-cards {
+    order: 3 !important;
+    width: 100% !important;
+    flex: 0 0 100% !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+    margin: 6px 0 0 !important;
+  }
+
+  .topbar-mini-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .topbar-popover {
+    position: fixed !important;
+    top: 88px !important;
+    right: 14px !important;
+    left: 14px !important;
+    width: auto !important;
+    max-width: none !important;
+    max-height: min(70vh, 520px) !important;
+    overflow-y: auto !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  .content {
+    padding: 18px 16px 88px !important;
+    overflow: hidden !important;
+  }
+
+  .page-title {
+    font-size: 30px !important;
+    line-height: 1.05 !important;
+  }
+
+  .page-desc {
+    font-size: 14px !important;
+    line-height: 1.45 !important;
+  }
+
+  .grid,
+  .grid-2,
+  .grid-3,
+  .admin-stat-grid,
+  .admin-roadmap-grid,
+  .admin-dashboard-grid,
+  .admin-plan-actions,
+  .store-grid,
+  .customization-workbench,
+  .customization-layout,
+  .two-columns,
+  .owned-grid,
+  .appearance-modal-grid,
+  .panel-theme-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .card,
+  .admin-section,
+  .admin-stat-card,
+  .admin-overview-link,
+  .admin-management-card,
+  .admin-dev-access-banner,
+  .admin-coupon-card,
+  .admin-audit-item,
+  .store-item-card,
+  .panel-theme-card,
+  .alert,
+  .onne-info-card {
+    position: relative !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+    transform: none;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    filter: none !important;
+    isolation: isolate;
+  }
+
+  .card {
+    padding: 18px !important;
+    border-radius: 18px !important;
+    box-shadow: 0 12px 34px rgba(0,0,0,.24) !important;
+  }
+
+  .admin-section-header {
+    display: block !important;
+    margin-bottom: 14px !important;
+  }
+
+  .admin-section h2 {
+    font-size: 20px !important;
+    line-height: 1.15 !important;
+  }
+
+  .admin-section p,
+  .admin-overview-link span,
+  .admin-coupon-card span,
+  .admin-audit-item span {
+    font-size: 13px !important;
+    line-height: 1.45 !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  .admin-stat-card strong {
+    font-size: 26px !important;
+  }
+
+  .admin-coupon-list,
+  .admin-audit-list {
+    display: grid !important;
+    gap: 10px !important;
+    width: 100% !important;
+  }
+
+  .admin-coupon-card,
+  .admin-audit-item {
+    display: grid !important;
+    grid-template-columns: 24px minmax(0, 1fr) auto !important;
+    align-items: start !important;
+    gap: 12px !important;
+    padding: 14px !important;
+  }
+
+  .admin-coupon-card div,
+  .admin-audit-item div,
+  .admin-overview-link,
+  .admin-stat-card,
+  .admin-dev-access-banner div {
+    min-width: 0 !important;
+  }
+
+  .admin-audit-item em {
+    margin-left: 0 !important;
+    justify-self: end !important;
+  }
+
+  .admin-table,
+  .admin-table.wide,
+  .admin-store-table,
+  .admin-coupon-table {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .admin-table-head,
+  .admin-table-row {
+    min-width: 760px !important;
+  }
+
+  .btn,
+  .admin-table-row button {
+    white-space: nowrap !important;
+  }
+
+  .alert.onne-info-card,
+  .store-notice.onne-info-card {
+    display: grid !important;
+    grid-template-columns: 42px minmax(0, 1fr) 42px !important;
+    gap: 12px !important;
+    align-items: center !important;
+    padding: 14px !important;
+  }
+
+  .alert.onne-info-card .onne-info-close,
+  .store-notice.onne-info-card .onne-info-close,
+  .onne-info-close {
+    position: static !important;
+    transform: none !important;
+    justify-self: end !important;
+  }
+
+  .alert.onne-info-card .onne-info-close:hover,
+  .store-notice.onne-info-card .onne-info-close:hover,
+  .onne-info-close:hover {
+    transform: none !important;
+  }
+
+  .profile {
+    position: static !important;
+    margin: 22px 0 0 !important;
+  }
+
+  .sidebar {
+    overflow-y: auto !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  .appearance-modal-backdrop,
+  .store-modal-overlay {
+    padding: 12px !important;
+    align-items: flex-start !important;
+    overflow-y: auto !important;
+  }
+
+  .appearance-modal-card,
+  .store-modal {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .topbar-subscription-cards {
+    grid-template-columns: 1fr !important;
+  }
+
+  .admin-coupon-card,
+  .admin-audit-item {
+    grid-template-columns: 24px minmax(0, 1fr) !important;
+  }
+
+  .admin-audit-item em {
+    grid-column: 2;
+    justify-self: start !important;
+  }
+}
