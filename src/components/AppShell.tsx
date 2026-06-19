@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Bell, Grid3X3, LogOut, Settings, ArrowLeft, CalendarClock, Crown, Info, X, ShieldCheck, Puzzle, LayoutDashboard, Sparkles, Store, UserCog, CheckCircle2, Palette } from 'lucide-react';
+import { Bell, Grid3X3, LogOut, Settings, ArrowLeft, CalendarClock, Crown, Info, X, ShieldCheck, Puzzle, LayoutDashboard, Sparkles, Store, UserCog, CheckCircle2, Palette, Menu } from 'lucide-react';
 import { adminNav, serverNav, userNav } from '@/lib/data';
 
 type ShellMode = 'user' | 'server' | 'admin';
@@ -31,8 +31,13 @@ export function AppShell({ children, mode = 'user', selectedGuildId = '123' }: {
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   const [moduleOpen, setModuleOpen] = useState(false);
   const [appearanceModalOpen, setAppearanceModalOpen] = useState(false);
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [selectedTheme, setSelectedTheme] = useState('venix-core');
   const isOnneStaff = true; // MVP/dev: liberado. Em produção, trocar por validação real de equipe Onne/autorizados.
+
+  useEffect(() => {
+    setMobileSidebarOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('onne-panel-theme') || 'venix-core';
@@ -54,9 +59,10 @@ export function AppShell({ children, mode = 'user', selectedGuildId = '123' }: {
     return pathname === normalizedHref || pathname.startsWith(`${normalizedHref}/`);
   }
 
-  return <div className="app">
-    <aside className="sidebar">
-      <Link href="/dashboard/user" className="brand"><span className="brand-mark">O</span> Onne</Link>
+  return <div className={`app ${mobileSidebarOpen ? 'mobile-sidebar-active' : ''}`}>
+    <button className={`mobile-sidebar-overlay ${mobileSidebarOpen ? 'is-open' : ''}`} type="button" aria-label="Fechar menu lateral" onClick={() => setMobileSidebarOpen(false)} />
+    <aside className={`sidebar ${mobileSidebarOpen ? 'is-open' : ''}`} onClick={(event) => { const target = event.target as HTMLElement; if (target.closest('a')) setMobileSidebarOpen(false); }}>
+      <div className="sidebar-mobile-head"><Link href="/dashboard/user" className="brand"><span className="brand-mark">O</span> Onne</Link><button className="sidebar-mobile-close" type="button" aria-label="Fechar menu" onClick={() => setMobileSidebarOpen(false)}><X size={18}/></button></div>
 
       {!isServerMode && !isAdminMode && <>
         <div className="nav-title">DASHBOARD DO USUÁRIO</div>
@@ -105,6 +111,7 @@ export function AppShell({ children, mode = 'user', selectedGuildId = '123' }: {
     </aside>
     <main className="main">
       <header className="topbar">
+        <button className="mobile-menu-button" type="button" aria-label="Abrir menu lateral" onClick={() => setMobileSidebarOpen(true)}><Menu size={20}/><span>Menu</span></button>
         <div className="topbar-subscription-cards" aria-label="Resumo da assinatura">
           <div className="topbar-mini-card topbar-plan-card">
             <Crown size={15} aria-hidden="true" />
