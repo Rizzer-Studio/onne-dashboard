@@ -6753,3 +6753,295 @@ html[data-panel-theme="crimson-pulse"] {
   font-size: 13px;
   font-weight: 800;
 }
+
+/* Mobile refinement pack: dashboard/server/message-builder */
+@media (max-width: 760px) {
+  html { -webkit-text-size-adjust: 100%; }
+  body { overflow-x: hidden; }
+  button, input, select, textarea { font-size: 16px; }
+
+  .content {
+    padding: 18px 16px 84px !important;
+    max-width: 100% !important;
+    overflow-x: hidden;
+  }
+
+  .page-title {
+    font-size: clamp(30px, 10vw, 42px) !important;
+    line-height: 1.05 !important;
+    letter-spacing: -.05em !important;
+  }
+  .page-desc {
+    font-size: 17px !important;
+    line-height: 1.5 !important;
+    margin-bottom: 22px !important;
+  }
+
+  .card,
+  .server-command-group,
+  .prefix-settings-card,
+  .prefix-preview-card,
+  .command-channel-settings-card,
+  .command-channel-preview-panel,
+  .message-config-card,
+  .builder-section,
+  .json-editor-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+    padding: 18px !important;
+    border-radius: 20px !important;
+  }
+
+  .card h2,
+  .message-config-card h2,
+  .server-command-group h2,
+  .prefix-preview-card h2,
+  .command-channel-settings-card h2 {
+    font-size: clamp(25px, 7.5vw, 34px) !important;
+    line-height: 1.12 !important;
+  }
+
+  .card p,
+  .message-config-card p,
+  .prefix-preview-card p,
+  .command-channel-settings-card p,
+  .server-command-group p {
+    font-size: 16px !important;
+    line-height: 1.45 !important;
+  }
+
+  /* Message cards: keep Discord preview readable without overflowing */
+  .welcome-settings-grid { grid-template-columns: 1fr !important; }
+  .message-config-card .row {
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+  .message-config-card .pretty-switch {
+    margin-left: auto;
+    flex: 0 0 auto;
+    transform: scale(.92);
+    transform-origin: right center;
+  }
+  .saved-message-preview .discord-preview-box,
+  .discord-preview-box {
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: 16px !important;
+    gap: 12px !important;
+    overflow: hidden !important;
+  }
+  .preview-bot-avatar {
+    width: 48px !important;
+    height: 48px !important;
+    flex-basis: 48px !important;
+  }
+  .discord-preview-content,
+  .discord-embed-preview,
+  .components-v2-preview {
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+  .discord-preview-author {
+    flex-wrap: wrap !important;
+    row-gap: 4px !important;
+  }
+  .discord-preview-text,
+  .discord-embed-preview p,
+  .preview-section,
+  .preview-container,
+  .preview-gallery {
+    overflow-wrap: anywhere !important;
+    word-break: normal !important;
+  }
+  .discord-embed-preview {
+    max-width: 100% !important;
+    padding: 12px 12px 12px 14px !important;
+  }
+
+  /* Command pages: stop huge rows and keep switches/actions aligned */
+  .server-command-group-head,
+  .section-title-row,
+  .command-channel-settings-card .row,
+  .prefix-preview-card .row,
+  .prefix-settings-card .row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  .server-command-summary {
+    min-height: 76px !important;
+    padding: 14px 16px !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    gap: 10px 12px !important;
+    align-items: center !important;
+  }
+  .server-command-actions {
+    justify-self: end !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+  }
+  .server-command-summary > span:first-child {
+    min-width: 0 !important;
+    overflow-wrap: anywhere !important;
+  }
+  .theme-switch,
+  .pretty-switch span,
+  .switch-line input + span {
+    transform: scale(.9);
+    transform-origin: center;
+  }
+  .prefix-config-layout,
+  .command-channel-main-grid,
+  .command-channel-results-grid,
+  .channel-option-grid {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+  .prefix-info-panel-side,
+  .prefix-control-panel-wide,
+  .command-channel-switch-panel,
+  .command-channel-preview-panel {
+    width: 100% !important;
+    align-self: stretch !important;
+  }
+  .prefix-example-list .prefix-example-pair,
+  .prefix-example-pair {
+    min-height: 46px !important;
+    padding: 10px 12px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 10px !important;
+  }
+  .channel-token,
+  .command-token,
+  .prefix-command-token {
+    white-space: nowrap !important;
+    word-break: keep-all !important;
+  }
+
+  /* Color picker: mobile should be a compact editor, not a giant form */
+  .color-modal-overlay {
+    align-items: end !important;
+    padding: 10px !important;
+    overflow: hidden !important;
+  }
+  .color-modal {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: min(86dvh, 760px) !important;
+    overflow-y: auto !important;
+    border-radius: 20px 20px 0 0 !important;
+  }
+  .color-modal h2 {
+    font-size: 24px !important;
+    margin: 18px 16px 14px !important;
+  }
+  .color-modal-body,
+  .color-modal-body-fixed {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+    padding: 0 16px 18px !important;
+  }
+  .color-picker-area {
+    grid-template-columns: minmax(0, 1fr) 18px !important;
+    gap: 8px !important;
+  }
+  .color-board,
+  .color-board.interactive {
+    height: 210px !important;
+  }
+  .color-hue-slider {
+    min-height: 210px !important;
+    width: 18px !important;
+  }
+  .color-fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+  }
+  .color-fields label {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
+    text-align: left !important;
+    font-size: 13px !important;
+  }
+  .color-fields input {
+    height: 44px !important;
+    font-size: 16px !important;
+  }
+  .color-onne-mascot { display: none !important; }
+  .color-modal .modal-palette,
+  .builder-color-palette {
+    gap: 7px !important;
+  }
+  .color-random-row {
+    grid-template-columns: 1fr 1fr !important;
+    padding: 0 16px 16px !important;
+  }
+  .color-random-row button {
+    min-height: 44px !important;
+    font-size: 13px !important;
+  }
+  .color-modal-footer {
+    position: sticky !important;
+    bottom: 0 !important;
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom)) !important;
+    background: rgba(15,15,18,.96) !important;
+  }
+
+  /* Emoji/mention pickers: compact and aligned on mobile */
+  .emoji-picker-panel,
+  .mention-picker-panel {
+    left: 10px !important;
+    right: 10px !important;
+    bottom: 10px !important;
+    top: auto !important;
+    transform: none !important;
+    width: auto !important;
+    max-width: none !important;
+    max-height: min(76dvh, 620px) !important;
+    border-radius: 14px !important;
+  }
+  .emoji-picker-titlebar,
+  .mention-picker-titlebar {
+    min-height: 52px !important;
+  }
+  .emoji-picker-tabs {
+    overflow-x: auto !important;
+    grid-auto-flow: column !important;
+    grid-auto-columns: 44px !important;
+    grid-template-columns: none !important;
+    scrollbar-width: none !important;
+  }
+  .emoji-picker-tabs::-webkit-scrollbar { display: none; }
+  .emoji-picker-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    justify-items: center !important;
+  }
+  .emoji-picker-grid button {
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 29px !important;
+  }
+  .emoji-picker-content,
+  .mention-picker-content {
+    max-height: calc(76dvh - 156px) !important;
+  }
+
+  /* Avoid oversized add buttons on empty builder sections */
+  .builder-left-stack > .btn.full {
+    min-height: 46px !important;
+    font-size: 15px !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .content { padding-left: 14px !important; padding-right: 14px !important; }
+  .color-fields { grid-template-columns: 1fr !important; }
+  .emoji-picker-grid { grid-template-columns: repeat(5, minmax(0, 1fr)) !important; }
+}
