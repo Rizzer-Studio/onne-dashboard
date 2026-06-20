@@ -10,14 +10,28 @@ export const userNav = [
 ];
 
 export const serverNav = [
-  { label: 'Dashboard', href: '/dashboard/server/123', icon: LayoutDashboard },
-  { label: 'Configurações', href: '/dashboard/server/123/settings', icon: Settings },
-  { label: 'Módulos', href: '/dashboard/server/123/modules', icon: Blocks },
-  { label: 'Moderação', href: '/dashboard/server/123/moderation', icon: Shield },
-  { label: 'Economia/RPG', href: '/dashboard/server/123/economy', icon: Coins },
-  { label: 'Social', href: '/dashboard/server/123/social', icon: Users },
+  { label: 'Visão Geral', href: '/dashboard/server/123', icon: LayoutDashboard },
+  { label: 'Premium', href: '/dashboard/server/123/premium', icon: Crown },
   { label: 'Logs', href: '/dashboard/server/123/logs', icon: ScrollText },
-  { label: 'Permissões', href: '/dashboard/server/123/permissions', icon: Lock }
+  { label: 'Comandos Onne', href: '/dashboard/server/123/onne-commands', icon: Bot },
+  { label: 'Comandos por Prefixo', href: '/dashboard/server/123/prefix-commands', icon: Settings },
+  { label: 'Canais de Comandos', href: '/dashboard/server/123/command-channels', icon: Megaphone },
+  { label: 'Entrada/Saída', href: '/dashboard/server/123/welcome-goodbye', icon: Megaphone },
+  { label: 'Autorole', href: '/dashboard/server/123/autorole', icon: Users },
+  { label: 'Contador de Membros', href: '/dashboard/server/123/member-counter', icon: Activity },
+  { label: 'Permissões', href: '/dashboard/server/123/permissions', icon: Lock },
+  { label: 'Bloqueador de Convites', href: '/dashboard/server/123/invite-blocker', icon: Shield },
+  { label: 'Canais de Armadilha', href: '/dashboard/server/123/trap-channels', icon: Shield },
+  { label: 'Registro de Punições', href: '/dashboard/server/123/punishment-logs', icon: ScrollText },
+  { label: 'Punições de Avisos', href: '/dashboard/server/123/warning-punishments', icon: Shield },
+  { label: 'Motivos de Punição', href: '/dashboard/server/123/punishment-reasons', icon: ScrollText },
+  { label: 'Registro de Eventos', href: '/dashboard/server/123/event-logs', icon: Activity },
+  { label: 'Recompensas por XP', href: '/dashboard/server/123/xp-rewards', icon: Sparkles },
+  { label: 'Bônus de XP', href: '/dashboard/server/123/xp-bonus', icon: Sparkles },
+  { label: 'Bloqueios de XP', href: '/dashboard/server/123/xp-blocks', icon: Shield },
+  { label: 'Mensagens de Level', href: '/dashboard/server/123/level-up-messages', icon: Trophy },
+  { label: 'Resetar XP', href: '/dashboard/server/123/reset-xp', icon: Settings },
+  { label: 'Notificações do YouTube', href: '/dashboard/server/123/youtube-notifications', icon: Megaphone }
 ];
 
 export const servers = [

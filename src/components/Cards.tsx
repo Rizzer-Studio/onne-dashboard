@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { LucideIcon } from 'lucide-react';
 
 export function MetricCard({ icon: Icon, title, value, description }: { icon: LucideIcon; title: string; value: string; description: string }) {
@@ -15,7 +16,7 @@ export function ServerCard({ id, name, members, bot, plan, icon }: { id: string;
     <h3>{name}</h3>
     <p>Membros: {members} · Plano: {plan}</p>
     <div style={{marginTop:18}} className="row">
-      {canManage ? <a className="btn btn-primary" href={`/dashboard/server/${id}`}>Selecionar e gerenciar</a> : <button className="btn btn-secondary">Convidar Onne</button>}
+      {canManage ? <Link className="btn btn-primary" href={`/dashboard/server/${id}`}>Selecionar e gerenciar</Link> : <button className="btn btn-secondary">Convidar Onne</button>}
       <button className="btn btn-secondary">Ver detalhes</button>
     </div>
   </article>
