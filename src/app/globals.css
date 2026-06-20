@@ -7045,3 +7045,117 @@ html[data-panel-theme="crimson-pulse"] {
   .color-fields { grid-template-columns: 1fr !important; }
   .emoji-picker-grid { grid-template-columns: repeat(5, minmax(0, 1fr)) !important; }
 }
+
+/* Mobile polish final: picker close, command-channel switch, server badges */
+.emoji-picker-titlebar button,
+.mention-picker-titlebar button {
+  flex: 0 0 34px !important;
+  width: 34px !important;
+  max-width: 34px !important;
+  height: 34px !important;
+  min-height: 34px !important;
+  aspect-ratio: 1 / 1 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 9px !important;
+  line-height: 1 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  align-self: center !important;
+}
+.emoji-picker-titlebar {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+}
+.mention-picker-titlebar {
+  display: grid !important;
+  grid-template-columns: 34px minmax(0, 1fr) 34px !important;
+  align-items: center !important;
+}
+
+@media (max-width: 760px) {
+  .emoji-picker-titlebar,
+  .mention-picker-titlebar {
+    min-height: 48px !important;
+    padding: 0 12px !important;
+  }
+  .emoji-picker-titlebar button,
+  .mention-picker-titlebar button {
+    flex-basis: 34px !important;
+    width: 34px !important;
+    max-width: 34px !important;
+    min-width: 34px !important;
+    height: 34px !important;
+    min-height: 34px !important;
+    max-height: 34px !important;
+    font-size: 20px !important;
+  }
+  .emoji-picker-titlebar strong,
+  .mention-picker-titlebar strong {
+    min-width: 0 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  /* Keep switches pill-shaped on mobile instead of stretched/deformed */
+  .command-channel-settings-card .theme-switch,
+  .prefix-settings-card .theme-switch,
+  .server-command-summary .theme-switch {
+    width: 48px !important;
+    min-width: 48px !important;
+    max-width: 48px !important;
+    height: 26px !important;
+    min-height: 26px !important;
+    max-height: 26px !important;
+    padding: 3px !important;
+    border-radius: 999px !important;
+    transform: none !important;
+    flex: 0 0 48px !important;
+    display: inline-block !important;
+  }
+  .command-channel-settings-card .theme-switch::after,
+  .prefix-settings-card .theme-switch::after,
+  .server-command-summary .theme-switch::after {
+    width: 20px !important;
+    height: 20px !important;
+    top: 2px !important;
+    left: 3px !important;
+    border-radius: 50% !important;
+  }
+  .command-channel-settings-card .theme-switch.on::after,
+  .prefix-settings-card .theme-switch.on::after,
+  .server-command-summary .theme-switch.on::after {
+    transform: translateX(21px) !important;
+  }
+  .prefix-switch-row {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    align-items: center !important;
+    gap: 14px !important;
+  }
+
+  /* Server quick badges should not look like huge rounded capsules on mobile */
+  .server-config-card .status,
+  .card > .row .status,
+  .selected-server-box,
+  .topbar-mini-card,
+  .channel-select-head .status {
+    border-radius: 12px !important;
+  }
+  .server-config-card .status,
+  .card > .row .status,
+  .channel-select-head .status {
+    padding: 7px 10px !important;
+    line-height: 1.15 !important;
+    text-align: center !important;
+    max-width: 160px !important;
+    white-space: normal !important;
+  }
+  .selected-server-box {
+    padding: 11px !important;
+  }
+}
