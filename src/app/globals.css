@@ -7812,3 +7812,348 @@ html[data-panel-theme="crimson-pulse"] {
     height: 24px;
   }
 }
+
+/* Member counter final corrections: realtime zero padding, premium GIF format, aligned digits and picker parity */
+.counter-digit-slot {
+  width: 38px;
+  height: 38px;
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;
+}
+.counter-digits-preview img {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
+  margin: 0 auto;
+}
+.counter-digits-preview.premium .counter-digit-slot {
+  width: 42px;
+  height: 42px;
+}
+.counter-digits-preview.premium img {
+  image-rendering: auto;
+  filter: drop-shadow(0 0 10px color-mix(in srgb, var(--panel-primary, var(--cyan)) 36%, transparent)) drop-shadow(0 8px 14px rgba(0,0,0,.36));
+}
+.counter-loritta-preview .counter-digit-slot {
+  width: 28px;
+  height: 28px;
+}
+.counter-loritta-preview .counter-digits-preview.premium .counter-digit-slot {
+  width: 32px;
+  height: 32px;
+}
+.counter-selected-preview .counter-digit-slot {
+  width: 44px;
+  height: 44px;
+}
+.counter-checkbox.premium {
+  border-color: color-mix(in srgb, var(--panel-primary, var(--cyan)) 28%, rgba(255,255,255,.08));
+}
+.counter-checkbox.premium.active {
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--panel-primary, var(--cyan)) 28%, transparent), 0 12px 34px color-mix(in srgb, var(--panel-primary, var(--cyan)) 12%, transparent);
+}
+.counter-complete-row-v2 .counter-complete-value {
+  min-width: 84px;
+  text-align: right;
+}
+.counter-complete-row-v2:has(.field.full) .counter-complete-value {
+  color: var(--text-muted);
+}
+.counter-emoji-large-picker {
+  width: 360px;
+  max-width: min(92vw, 360px);
+}
+.counter-emoji-large-picker .counter-emoji-grid,
+.counter-emoji-large-picker.emoji-picker-panel .emoji-picker-grid {
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  padding: 14px;
+}
+.counter-emoji-large-picker .counter-emoji-grid button,
+.counter-emoji-large-picker.emoji-picker-panel .emoji-picker-grid button {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 22px;
+}
+.counter-emoji-large-picker .counter-emoji-popover-head button {
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  padding: 0 !important;
+}
+.discord-voice-preview strong {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media (max-width: 720px) {
+  .counter-digit-slot { width: 34px; height: 34px; }
+  .counter-loritta-preview .counter-digit-slot { width: 25px; height: 25px; }
+  .counter-loritta-preview .counter-digits-preview.premium .counter-digit-slot { width: 29px; height: 29px; }
+  .counter-selected-preview .counter-digit-slot { width: 38px; height: 38px; }
+  .counter-emoji-large-picker {
+    max-height: 430px;
+    overflow: hidden;
+  }
+  .counter-emoji-large-picker .counter-emoji-grid {
+    max-height: 330px;
+    overflow-y: auto;
+  }
+  .counter-complete-row-v2 .counter-complete-value {
+    min-width: 0;
+    text-align: left;
+  }
+}
+
+/* Member counter Delux Premium + simple/complete mode correction */
+.counter-simple-list-preview {
+  display: grid;
+  gap: 12px;
+}
+.counter-simple-row-preview,
+.counter-invite-preview {
+  display: grid;
+  grid-template-columns: minmax(120px, .62fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.035);
+}
+.counter-simple-row-preview > div,
+.counter-invite-preview > span + strong {
+  min-width: 0;
+}
+.counter-simple-row-preview > div {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--text-main);
+  font-weight: 950;
+}
+.counter-simple-row-preview > div span,
+.counter-invite-preview > span {
+  font-size: 22px;
+  line-height: 1;
+}
+.counter-simple-row-preview .counter-digits-preview {
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  justify-content: flex-end;
+}
+.counter-invite-preview {
+  grid-template-columns: auto minmax(90px, .42fr) minmax(0, 1fr);
+}
+.counter-invite-preview strong {
+  color: var(--text-main);
+  font-weight: 950;
+  white-space: nowrap;
+}
+.counter-invite-preview small {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--panel-primary, var(--cyan));
+  font-weight: 850;
+}
+.counter-digits-preview.premium {
+  gap: 2px;
+}
+.counter-digits-preview.premium .counter-digit-slot {
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  overflow: visible;
+}
+.counter-digits-preview.premium img {
+  object-fit: contain;
+  object-position: center;
+  transform: scale(1.06);
+}
+.counter-loritta-preview .counter-digits-preview.premium .counter-digit-slot {
+  width: 34px;
+  height: 34px;
+}
+.counter-simple-row-preview .counter-digits-preview.premium .counter-digit-slot {
+  width: 36px;
+  height: 36px;
+}
+.counter-theme-option:disabled,
+.counter-theme-option[aria-disabled='true'] {
+  opacity: .45;
+  pointer-events: none;
+}
+.counter-checkbox.premium {
+  background: linear-gradient(135deg, rgba(124,58,237,.16), rgba(6,182,212,.08), rgba(244,63,94,.12));
+}
+@media (max-width: 720px) {
+  .counter-simple-row-preview,
+  .counter-invite-preview {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  .counter-simple-row-preview .counter-digits-preview {
+    justify-content: flex-start;
+  }
+  .counter-invite-preview {
+    gap: 8px;
+  }
+  .counter-invite-preview small {
+    white-space: normal;
+    line-height: 1.35;
+  }
+  .counter-digits-preview.premium .counter-digit-slot { width: 38px; height: 38px; }
+  .counter-loritta-preview .counter-digits-preview.premium .counter-digit-slot { width: 30px; height: 30px; }
+}
+
+/* Member counter mode separation fix: simple mode is Discord-style only; advanced mode owns assets/GIFs */
+.counter-simple-settings {
+  display: grid;
+  gap: 16px;
+}
+.counter-simple-note {
+  display: grid;
+  gap: 4px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.035);
+}
+.counter-simple-note strong {
+  color: var(--text-main);
+  font-weight: 950;
+}
+.counter-simple-note span {
+  color: var(--text-muted);
+  line-height: 1.45;
+  font-size: 13px;
+}
+.counter-complete-list.simple-only {
+  gap: 12px;
+}
+.counter-complete-row-v2.simple {
+  background: rgba(255,255,255,.028);
+}
+.counter-complete-fields.simple {
+  grid-template-columns: 168px minmax(0,1fr);
+}
+.counter-complete-preview.simple-discord-only {
+  min-height: 220px;
+  align-content: start;
+  padding: 18px;
+  background: #160f2a;
+  border-color: rgba(167,139,250,.18);
+}
+.counter-complete-preview.simple-discord-only .discord-category-preview {
+  color: #A78BFA;
+  opacity: .98;
+}
+.counter-complete-preview.simple-discord-only .discord-voice-preview {
+  min-height: 32px;
+  color: #A8A4C0;
+}
+.counter-complete-preview.simple-discord-only .discord-voice-preview strong {
+  color: #BDB7D3;
+  font-weight: 850;
+}
+.counter-advanced-preview {
+  display: grid;
+  gap: 18px;
+  align-content: start;
+}
+.counter-advanced-preview p {
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+.counter-advanced-preview .counter-loritta-preview {
+  margin-top: 2px;
+}
+.counter-mode-card.active strong,
+.counter-mode-card.active svg {
+  color: var(--panel-primary, var(--cyan));
+}
+
+@media (max-width: 720px) {
+  .counter-complete-fields.simple {
+    grid-template-columns: 1fr;
+  }
+  .counter-complete-preview.simple-discord-only {
+    min-height: 180px;
+    padding: 16px;
+  }
+}
+
+/* Member counter final mode separation */
+.counter-complete-static-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid var(--border-soft);
+  background: rgba(255,255,255,.035);
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+.counter-complete-static-note svg { color: var(--theme-primary, var(--cyan)); flex: 0 0 auto; margin-top: 2px; }
+.counter-complete-static-note strong { display: block; color: var(--text-main); margin-bottom: 4px; }
+.counter-complete-static-note span { display: block; }
+.counter-advanced-preview.numbers-only .counter-loritta-preview { margin-top: 0; }
+.counter-advanced-preview.numbers-only { align-items: flex-start; }
+
+/* Member counter premium blue + mode separation final */
+.counter-theme-dot.turquoise { background: linear-gradient(135deg, #0ea5e9, #2563eb); box-shadow: 0 0 18px rgba(37,99,235,.38); }
+.counter-theme-option.active .counter-theme-dot.turquoise { box-shadow: 0 0 0 3px rgba(14,165,233,.18), 0 0 24px rgba(37,99,235,.42); }
+.complete-number-settings { grid-template-columns: minmax(220px, 360px) !important; }
+.counter-advanced-preview.numbers-only .counter-loritta-preview { justify-items: center; }
+.counter-advanced-preview.numbers-only p { max-width: 640px; margin-inline: auto; text-align: center; }
+
+/* Member counter final preview alignment + true black theme */
+.counter-advanced-preview.numbers-only,
+.counter-advanced-preview.numbers-only .counter-loritta-preview,
+.counter-loritta-preview {
+  align-items: flex-start !important;
+  justify-items: start !important;
+  justify-content: flex-start !important;
+  text-align: left !important;
+}
+.counter-advanced-preview.numbers-only .counter-loritta-preview {
+  width: 100% !important;
+  margin-inline: 0 !important;
+}
+.counter-advanced-preview.numbers-only p {
+  margin-inline: 0 !important;
+  text-align: left !important;
+}
+.counter-loritta-preview .counter-digits-preview,
+.counter-advanced-preview.numbers-only .counter-digits-preview {
+  justify-content: flex-start !important;
+  align-items: center !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  margin-inline: 0 !important;
+  text-align: left !important;
+}
+.counter-digits-preview.black,
+.counter-loritta-preview .counter-digits-preview.black,
+.counter-advanced-preview.numbers-only .counter-digits-preview.black {
+  background: #000 !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+.counter-digits-preview.black img,
+.counter-loritta-preview .counter-digits-preview.black img,
+.counter-advanced-preview.numbers-only .counter-digits-preview.black img {
+  filter: none !important;
+}
