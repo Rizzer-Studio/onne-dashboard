@@ -90,8 +90,8 @@ export default function ServerAutorolePage() {
 
         <div className="autorole-selected-box">
           {assignedRoles.length === 0 ? <div className="autorole-empty-state">
-            <div className="autorole-empty-emoji">🥺</div>
-            <strong>Vazio, ou seja, não cheio</strong>
+            <div className="autorole-empty-emoji">✨</div>
+            <strong>Nenhum cargo configurado</strong>
             <span>Adicione pelo menos um cargo para o Onne entregar automaticamente.</span>
           </div> : <div className="autorole-role-list">
             {assignedRoles.map((role) => <div className="autorole-role-pill" key={role.id}>

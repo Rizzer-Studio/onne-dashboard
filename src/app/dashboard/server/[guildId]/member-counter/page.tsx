@@ -59,7 +59,7 @@ function CounterDigits({ value, theme, shape, zeros = 5 }: { value: number; them
   const assetTheme = theme;
   const extension = isPremium ? 'gif' : 'png';
 
-  return <div className={`counter-digits-preview ${shape}`} aria-label={`Prévia ${digits.join('')}`}>
+  return <div className={`counter-digits-preview ${shape} ${theme}`} aria-label={`Prévia ${digits.join('')}`}>
     {digits.map((digit, index) => (
       <span className="counter-digit-slot" key={`${digit}-${index}`}>
         <img src={`/assets/member-counter/numbers/${assetShape}/${assetTheme}/${digit}.${extension}`} alt={digit} />
@@ -83,7 +83,7 @@ function MiniEmojiPicker({ onPick, onClose }: { onPick: (emoji: string) => void;
 }
 
 function CounterSampleRows({ theme, shape, zeros }: { theme: CounterTheme; shape: CounterShape; zeros: number }) {
-  return <div className="counter-loritta-preview" aria-label="Prévia dos números do contador">
+  return <div className="counter-onne-preview" aria-label="Prévia dos números do contador">
     {[5, 10, 32, 250, 1234567890].map((value) => <CounterDigits key={value} value={value} theme={theme} shape={shape} zeros={zeros} />)}
   </div>;
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Bell, Grid3X3, LogOut, Settings, ArrowLeft, CalendarClock, Crown, Info, X, ShieldCheck, Puzzle, LayoutDashboard, Sparkles, Store, UserCog, CheckCircle2, Palette, Menu } from 'lucide-react';
@@ -33,6 +33,9 @@ export function AppShell({ children, mode = 'user', selectedGuildId = '123' }: {
   const [appearanceModalOpen, setAppearanceModalOpen] = useState(false);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [selectedTheme, setSelectedTheme] = useState('venix-core');
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+  const [contentResetKey, setContentResetKey] = useState(0);
+  const contentRef = useRef<HTMLElement | null>(null);
   const isOnneStaff = true; // MVP/dev: liberado. Em produção, trocar por validação real de equipe Onne/autorizados.
 
   useEffect(() => {
@@ -44,6 +47,55 @@ export function AppShell({ children, mode = 'user', selectedGuildId = '123' }: {
     setSelectedTheme(savedTheme);
     document.documentElement.dataset.panelTheme = savedTheme;
   }, []);
+
+
+  useEffect(() => {
+    const content = contentRef.current;
+    if (!content) return;
+
+    const isEditableTarget = (target: EventTarget | null) => {
+      if (!(target instanceof HTMLElement)) return false;
+      if (target.closest('[data-ignore-dirty="true"]')) return false;
+      if (target.closest('.message-picker-modal, .color-picker-modal, .appearance-modal-backdrop, .topbar, .sidebar')) return false;
+      return Boolean(
+        target.closest('input, textarea, select, .theme-switch, .member-counter-mode-card, .counter-style-card, .panel-theme-card, .option-pill, .prefix-symbol-btn')
+      );
+    };
+
+    const markDirty = (event: Event) => {
+      if (isEditableTarget(event.target)) setHasUnsavedChanges(true);
+    };
+
+    content.addEventListener('input', markDirty, true);
+    content.addEventListener('change', markDirty, true);
+    content.addEventListener('click', markDirty, true);
+
+    return () => {
+      content.removeEventListener('input', markDirty, true);
+      content.removeEventListener('change', markDirty, true);
+      content.removeEventListener('click', markDirty, true);
+    };
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!hasUnsavedChanges) return;
+    const beforeUnload = (event: BeforeUnloadEvent) => {
+      event.preventDefault();
+      event.returnValue = '';
+    };
+    window.addEventListener('beforeunload', beforeUnload);
+    return () => window.removeEventListener('beforeunload', beforeUnload);
+  }, [hasUnsavedChanges]);
+
+  function resetUnsavedChanges() {
+    setHasUnsavedChanges(false);
+    setContentResetKey((value) => value + 1);
+    window.dispatchEvent(new CustomEvent('onne:reset-unsaved-changes'));
+  }
+
+  function saveUnsavedChanges() {
+    setHasUnsavedChanges(false);
+  }
 
   function applyPanelTheme(themeId: string) {
     setSelectedTheme(themeId);
@@ -161,7 +213,8 @@ export function AppShell({ children, mode = 'user', selectedGuildId = '123' }: {
           <Link className="btn btn-secondary" href="/"><LogOut size={16}/> Sair</Link>
         </div>
       </header>
-      <section className="content">{children}</section>
+      <section className="content" ref={contentRef} key={`${pathname}-${contentResetKey}`}>{children}</section>
+      <UnsavedChangesBar visible={hasUnsavedChanges} onReset={resetUnsavedChanges} onSave={saveUnsavedChanges} />
       {appearanceModalOpen && <div className="appearance-modal-backdrop" role="dialog" aria-modal="true" aria-label="Aparência do painel">
         <div className="appearance-modal-card">
           <button className="appearance-modal-close" type="button" aria-label="Fechar aparência" onClick={() => setAppearanceModalOpen(false)}><X size={18}/></button>
@@ -211,4 +264,17 @@ export function OnneInfoCard({ className = '' }: { className?: string }) {
 
 export function PageHeader({ title, description }: { title: string; description: string }) {
   return <><OnneInfoCard /><h1 className="page-title">{title}</h1><p className="page-desc">{description}</p></>
+}
+
+
+function UnsavedChangesBar({ visible, onReset, onSave }: { visible: boolean; onReset: () => void; onSave: () => void }) {
+  return (
+    <div className={`unsaved-changes-bar ${visible ? 'is-visible' : ''}`} role="status" aria-live="polite" aria-hidden={!visible}>
+      <strong>Cuidado! Você tem alterações que não foram salvas</strong>
+      <div className="unsaved-changes-actions">
+        <button className="unsaved-reset" type="button" onClick={onReset}>Redefinir</button>
+        <button className="unsaved-save" type="button" onClick={onSave}>Salvar</button>
+      </div>
+    </div>
+  );
 }
