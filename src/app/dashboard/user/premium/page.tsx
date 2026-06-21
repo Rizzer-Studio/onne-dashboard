@@ -1,115 +1,48 @@
 import { PageHeader } from '@/components/AppShell';
-
-const paymentMethods = ['Pix', 'Cartão de crédito', 'Cartão de débito', 'Boleto'];
-
-const plans = [
-  {
-    name: 'Free',
-    badge: 'Atual',
-    price: 'R$ 0',
-    note: 'Para começar',
-    action: 'Plano atual',
-    featured: false,
-    current: true,
-  },
-  {
-    name: 'Onne Plus',
-    badge: 'Popular',
-    price: 'R$ 19,90',
-    note: 'por mês',
-    action: 'Assinar Plus',
-    featured: true,
-    current: false,
-  },
-  {
-    name: 'Onne Ultra',
-    badge: 'Completo',
-    price: 'R$ 39,90',
-    note: 'por mês',
-    action: 'Assinar Ultra',
-    featured: false,
-    current: false,
-  },
-];
+import { BadgeCheck, CreditCard, Gem, Landmark, ReceiptText, ShieldCheck, Sparkles, Star, WalletCards, X } from 'lucide-react';
 
 const userFeatures = [
-  ['Banners do perfil equipados', '1', '5', '15'],
-  ['Efeitos do perfil', '1 básico', '6 efeitos', 'Todos'],
-  ['Banners de ranking', '1', '5', '12'],
-  ['Insígnias no perfil', '1', '4', '10'],
-  ['Temas premium do contador', '—', 'Blue/Pink', 'Blue/Pink/Delux'],
-  ['Limite de favoritos na loja', '5', '25', '100'],
-  ['Prioridade em novidades visuais', '—', '✓', '✓'],
-  ['Badge premium no perfil', '—', '✓', '✓'],
+  ['Banners e efeitos exclusivos do perfil', true, true, true],
+  ['Mais slots de itens cosméticos equipados', 'Básico', 'Avançado', 'Completo'],
+  ['Temas premium para o perfil', false, true, true],
+  ['Badge Premium no perfil do Onne', false, true, true],
+  ['Prioridade em recursos visuais novos', false, false, true],
+  ['Limite ampliado para personalização', 'Normal', '2x', '4x'],
+  ['Descontos em itens selecionados da loja', false, '5%', '10%']
 ];
 
 export default function UserPremiumPage() {
-  return (
-    <>
-      <PageHeader title="Premium do Usuário" description="Planos para personalização do perfil, cosméticos e recursos visuais da sua conta Onne." />
-
-      <section className="premium-shell user-premium-page">
-        <div className="premium-hero-grid">
-          <div className="premium-mascot-card" aria-hidden="true">
-            <div className="premium-mascot-orb">O</div>
-            <div className="premium-mascot-glow" />
+  return <>
+    <PageHeader title="Premium do Usuário" description="Assinatura individual para liberar cosméticos, benefícios de perfil e recursos visuais exclusivos." />
+    <main className="premium-page">
+      <section className="premium-hero">
+        <div className="premium-mascot"><div className="premium-mascot-mark">O</div></div>
+        <div className="premium-payment">
+          <h2>Nós aceitamos</h2>
+          <div className="premium-payment-grid">
+            <div className="premium-payment-item"><Gem size={28}/><span>Pix</span></div>
+            <div className="premium-payment-item"><CreditCard size={28}/><span>Cartão de Crédito</span></div>
+            <div className="premium-payment-item"><WalletCards size={28}/><span>Cartão de Débito</span></div>
+            <div className="premium-payment-item"><ReceiptText size={28}/><span>Boleto</span></div>
           </div>
-
-          <div className="premium-payment-card">
-            <span className="premium-kicker">Nós aceitamos</span>
-            <div className="premium-payment-grid">
-              {paymentMethods.map((method) => (
-                <div className="premium-payment-item" key={method}>
-                  <span className="premium-payment-icon">◆</span>
-                  <strong>{method}</strong>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className="premium-section-title">
-          <span>Assinatura</span>
-          <h2>Premium para usuários</h2>
-          <p>Desbloqueie mais opções de personalização para o seu perfil Onne.</p>
-        </div>
-
-        <div className="premium-period-toggle" aria-label="Seleção de período">
-          <button className="active" type="button">Mensal</button>
-          <button type="button">Anual <span>-20%</span></button>
-        </div>
-
-        <div className="premium-plan-grid">
-          {plans.map((plan) => (
-            <article className={`premium-plan-card ${plan.featured ? 'recommended' : ''}`} key={plan.name}>
-              {plan.featured && <span className="premium-recommended">Recomendado</span>}
-              <span className="premium-plan-badge">{plan.badge}</span>
-              <h3>{plan.name}</h3>
-              <div className="premium-price"><strong>{plan.price}</strong><span>{plan.note}</span></div>
-              <button className={plan.current ? 'btn btn-secondary premium-buy-button' : 'btn btn-primary premium-buy-button'} type="button">
-                {plan.action}
-              </button>
-            </article>
-          ))}
-        </div>
-
-        <div className="premium-comparison-card">
-          <div className="premium-comparison-header">
-            <span>Recurso</span>
-            <span>Free</span>
-            <span>Plus</span>
-            <span>Ultra</span>
-          </div>
-          {userFeatures.map(([feature, free, plus, ultra]) => (
-            <div className="premium-comparison-row" key={feature}>
-              <span>{feature}</span>
-              <strong>{free}</strong>
-              <strong>{plus}</strong>
-              <strong>{ultra}</strong>
-            </div>
-          ))}
         </div>
       </section>
-    </>
-  );
+
+      <section className="premium-plans-section">
+        <h2>Premium para Usuários</h2>
+        <div className="premium-billing-toggle"><button className="active">Mensal</button><button>Anual <span>-20%</span></button></div>
+        <div className="premium-plan-grid">
+          <article className="premium-plan-card"><h3>Free</h3><div className="premium-price">R$ 0<small>/mensal</small></div><p>Recursos básicos para usar o Onne e testar a personalização.</p><button className="btn btn-secondary">Plano atual</button></article>
+          <article className="premium-plan-card highlight"><span className="premium-recommended">RECOMENDADO</span><h3>Plus</h3><div className="premium-price">R$ 14,99<small>/mensal</small></div><p>Mais cosméticos, badges e vantagens de perfil.</p><button className="btn btn-primary">Assinar Plus</button></article>
+          <article className="premium-plan-card"><h3>Delux</h3><div className="premium-price">R$ 29,99<small>/mensal</small></div><p>Experiência completa com recursos visuais premium.</p><button className="btn btn-primary">Assinar Delux</button></article>
+        </div>
+      </section>
+
+      <section className="premium-feature-table">
+        <table><thead><tr><th>Recurso</th><th>Free</th><th>Plus</th><th className="featured-col">Delux</th></tr></thead><tbody>
+          {userFeatures.map(([name, free, plus, delux]) => <tr key={String(name)}><td>{name}</td>{[free, plus, delux].map((value, index) => <td key={index} className={index===2?'featured-col':''}>{value === true ? <BadgeCheck className="premium-check"/> : value === false ? <X className="premium-x"/> : <strong>{value}</strong>}</td>)}</tr>)}
+        </tbody></table>
+      </section>
+    </main>
+  </>;
 }

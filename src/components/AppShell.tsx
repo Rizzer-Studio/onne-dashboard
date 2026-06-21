@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Bell, Grid3X3, LogOut, Settings, ArrowLeft, CalendarClock, Crown, Info, X, ShieldCheck, Puzzle, LayoutDashboard, Sparkles, Store, UserCog, CheckCircle2, Palette, Menu } from 'lucide-react';
+import { Bell, Grid3X3, LogOut, ArrowLeft, CalendarClock, Crown, Info, X, ShieldCheck, Puzzle, LayoutDashboard, Sparkles, Store, UserCog, CheckCircle2, Palette, Menu, Server } from 'lucide-react';
 import { adminNav, serverNav, userNav } from '@/lib/data';
 
 type ShellMode = 'user' | 'server' | 'admin';
@@ -159,7 +159,7 @@ export function AppShell({ children, mode = 'user', selectedGuildId = '123' }: {
         </div>
       </>}
 
-      <div className="profile"><div className="avatar">M</div><div style={{minWidth:0}}><strong style={{fontSize:13}}>Matheus Felipe</strong><p style={{margin:0,color:'#64748B',fontSize:10,overflow:'hidden',textOverflow:'ellipsis'}}>matheus.f.basilio@gmail.com</p></div><Settings size={16}/></div>
+      <div className="profile"><div className="avatar">M</div><div style={{minWidth:0}}><strong style={{fontSize:13}}>Matheus Felipe</strong><p style={{margin:0,color:'#64748B',fontSize:10,overflow:'hidden',textOverflow:'ellipsis'}}>matheus.f.basilio@gmail.com</p></div></div>
     </aside>
     <main className="main">
       <header className="topbar">
@@ -168,8 +168,15 @@ export function AppShell({ children, mode = 'user', selectedGuildId = '123' }: {
           <div className="topbar-mini-card topbar-plan-card">
             <Crown size={15} aria-hidden="true" />
             <div>
-              <span>ASSINATURA</span>
+              <span>ASSINATURA USUÁRIO</span>
               <strong>Premium</strong>
+            </div>
+          </div>
+          <div className="topbar-mini-card topbar-server-plan-card">
+            <Server size={15} aria-hidden="true" />
+            <div>
+              <span>ASSINATURA SERVIDOR</span>
+              <strong>Free</strong>
             </div>
           </div>
           <div className="topbar-mini-card topbar-renew-card">

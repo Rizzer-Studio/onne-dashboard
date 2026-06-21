@@ -59,7 +59,7 @@ function CounterDigits({ value, theme, shape, zeros = 5 }: { value: number; them
   const assetTheme = theme;
   const extension = isPremium ? 'gif' : 'png';
 
-  return <div className={`counter-digits-preview ${shape} ${theme}`} aria-label={`Prévia ${digits.join('')}`}>
+  return <div className={`counter-digits-preview ${shape}`} aria-label={`Prévia ${digits.join('')}`}>
     {digits.map((digit, index) => (
       <span className="counter-digit-slot" key={`${digit}-${index}`}>
         <img src={`/assets/member-counter/numbers/${assetShape}/${assetTheme}/${digit}.${extension}`} alt={digit} />
@@ -98,7 +98,7 @@ function ChannelBadge({ channel }: { channel: ServerChannel }) {
 
 export default function ServerMemberCounterPage() {
   const [selectedChannelId, setSelectedChannelId] = useState('entrada');
-  const [enabled, setEnabled] = useState(true);
+  const [enabled, setEnabled] = useState(false);
   const [mode, setMode] = useState<CounterMode>('simple');
   const [shape, setShape] = useState<CounterShape>('quadrado');
   const [theme, setTheme] = useState<CounterTheme>('blue');
@@ -160,19 +160,20 @@ export default function ServerMemberCounterPage() {
           <span className="theme-status-pill">{channels.length} canais</span>
         </div>
 
-        <div className="counter-channel-list">
-          {channels.map((channel) => (
-            <button key={channel.id} type="button" className={`counter-channel-row ${selectedChannelId === channel.id ? 'active' : ''}`} onClick={() => setSelectedChannelId(channel.id)}>
-              <span className="counter-channel-icon">{channel.type === 'voice' ? <Volume2 size={19} /> : <HashIcon size={19} />}</span>
-              <span className="counter-channel-main"><strong>{channel.emoji} · {channel.name}</strong><small>{channel.topic}</small></span>
-              <span className="counter-channel-action">Selecionar</span>
-            </button>
-          ))}
+        <label className="field counter-channel-select-field">
+          <span>Canal do contador</span>
+          <select className="input counter-channel-select" value={selectedChannelId} onChange={(event) => setSelectedChannelId(event.target.value)}>
+            {channels.map((channel) => <option key={channel.id} value={channel.id}>{channel.type === 'voice' ? '🔊' : '#'} {channel.emoji} · {channel.name} — {channel.topic}</option>)}
+          </select>
+        </label>
+        <div className="counter-channel-current">
+          <span className="counter-channel-icon">{selectedChannel.type === 'voice' ? <Volume2 size={19} /> : <HashIcon size={19} />}</span>
+          <span className="counter-channel-main"><strong>{selectedChannel.emoji} · {selectedChannel.name}</strong><small>{selectedChannel.topic}</small></span>
         </div>
       </div>
 
       <div className="member-counter-config-grid">
-        <section className="card member-counter-config-card">
+        <section className={`card member-counter-config-card ${enabled ? '' : 'is-disabled'}`}>
           <div className="member-counter-header-row compact">
             <div>
               <span className="counter-kicker">CONFIGURAÇÃO</span>

@@ -27,7 +27,7 @@ const roleOptions: RoleOption[] = [
 ];
 
 export default function ServerAutorolePage() {
-  const [enabled, setEnabled] = useState(true);
+  const [enabled, setEnabled] = useState(false);
   const [afterMessage, setAfterMessage] = useState(false);
   const [delay, setDelay] = useState('0');
   const [selectedRole, setSelectedRole] = useState('vegas-ceo');
@@ -51,7 +51,7 @@ export default function ServerAutorolePage() {
     />
 
     <section className="autorole-page-grid">
-      <div className="card autorole-main-card">
+      <div className={`card autorole-main-card ${enabled ? '' : 'is-disabled'}`}>
         <div className="autorole-card-head">
           <div className="autorole-title-wrap">
             <span className="autorole-title-icon"><UserRoundPlus size={20} /></span>
